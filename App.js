@@ -1,36 +1,24 @@
-import React, { useState } from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import  Menu from './components/Menu';
+// App.js
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-export default function App() {
+import Home from './src/screens/Home';
+import Games from './src/screens/Games';
+import Menu from './src/components/Menu';
 
-  const [menuVisible, setMenuVisible] = useState(false);
-  const [selectedMenuItem, setSelectedMenuItem] = useState(null);
+const Stack = createStackNavigator();
 
-  const toggleMenu = () => {
-    setMenuVisible(!menuVisible);
-  };
-
-  const handleMenuItemPress = (item) => {
-    setSelectedMenuItem(item);
-    toggleMenu();
-  };
-
+function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-      <Menu onMenuItemPress={handleMenuItemPress} />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Games" component={Games} />
+      </Stack.Navigator>
+      <Menu></Menu>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;

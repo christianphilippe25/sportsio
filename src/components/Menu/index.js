@@ -1,18 +1,20 @@
 // src/components/Menu.js
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const Menu = ({ onMenuItemPress }) => {
+  const navigation = useNavigation();
   return (
     <View style={styles.menuContainer}>
-      <TouchableOpacity onPress={() => onMenuItemPress('Item 1')} style={styles.menuItem}>
-        <Text>Item 1</Text>
+      <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.menuItem}>
+        <Text>Home</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => onMenuItemPress('Item 2')} style={styles.menuItem}>
-        <Text>Item 2</Text>
+      <TouchableOpacity onPress={() => navigation.navigate('Games')} style={styles.menuItem}>
+        <Text>Meus jogos</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => onMenuItemPress('Item 3')} style={styles.menuItem}>
-        <Text>Item 3</Text>
+      <TouchableOpacity onPress={() => navigation.navigate('Me')} style={styles.menuItem}>
+        <Text>Eu</Text>
       </TouchableOpacity>
     </View>
   );
@@ -22,16 +24,12 @@ const styles = StyleSheet.create({
   menuContainer: {
     display: 'flex',
     flexDirection: 'row',
-    alignContent: 'space-around',
+    justifyContent: 'space-evenly',
     backgroundColor: 'white',
     padding: 10,
     borderRadius: 5,
     elevation: 3,
     width: '100%',
-    position: 'absolute',
-    bottom: 0, // Position at the bottom of the screen
-    left: 0,
-    right: 0,
   },
   menuItem: {
     margin: 10,
