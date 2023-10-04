@@ -1,16 +1,22 @@
-// Import the Axios library
-const axios = require('axios');
+const express = require('express');
+const db = require('./config')
+const cors = require('cors')
 
-// Define the API URL you want to request
-const apiUrl = 'localhost';
+// NEED TO RUN IN DATABASE
+// ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'c79916052';
 
-// Make a GET request using Axios
-axios.get(apiUrl)
-  .then(function (response) {
-    // Handle a successful response
-    console.log('Response data:', response.data);
-  })
-  .catch(function (error) {
-    // Handle any errors that occurred during the request
-    console.error('Error:', error);
-  });
+const app = express();
+const  PORT = 3002;
+app.use(cors());
+app.use(express.json())
+
+
+// Route to get one post
+app.get("/api/user/:userid", (req,res)=>{
+    const userid = req.params.userid;
+    //
+});
+
+app.listen(3002, ()=>{
+    console.log(`Server is running on ${3002}`)
+})
